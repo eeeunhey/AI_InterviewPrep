@@ -1,0 +1,10 @@
+# 전체 레포 기준
+node_modules
+**/node_modules
+.git
+.gitignore
+.vscode
+.DS_Store
+**/*.log
+frontend/ai-interview/.env
+frontend/ai-interview/.env.*

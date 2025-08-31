@@ -1,0 +1,10 @@
+FROM node:20-alpine
+WORKDIR /app
+ENV CHOKIDAR_USEPOLLING=true VITE_FORCE_POLLING=true
+
+COPY package*.json ./
+RUN --mount=type=cache,target=/root/.npm npm install
+
+# 소스는 볼륨 마운트로 연결 예정
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host", "--port", "5173"]
