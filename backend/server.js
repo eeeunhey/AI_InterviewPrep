@@ -1,8 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const path = require("path"); // 요청 로깅 (선택)
-const connectDB = require("./config/db"); // 몽고 연결 함수
+const path = require("path"); 
+const connectDB = require("./config/db"); // MongoDB 연결 함수
+
+
+const authRoutes = require("./routes/authRoutes"); 
 
 const app = express();
 
@@ -21,13 +24,12 @@ connectDB();
 app.use(express.json());
 
 // 라우트
-app.use("/api/auth",authRoutes);
-app.use("/api/session",sessionRoutes);
-app.use("/api/questions",questionRoutes);
+app.use("/api/auth", authRoutes);
+//app.use("/api/session", sessionRoutes);
+//app.use("/api/questions", questionRoutes);
 
-
-app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
-app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
+//app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
+//app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 
 // 서버 업로드 폴더
