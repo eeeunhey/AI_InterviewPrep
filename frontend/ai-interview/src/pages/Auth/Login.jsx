@@ -29,7 +29,6 @@ const Login = ({ setCurrentPage }) => {
 
       //로그인 API 호출하기 위한 코드
       try {
-
       } catch(error) {
         if(error.response && error.response.data.message) {
           setError(error.response.data.massage);

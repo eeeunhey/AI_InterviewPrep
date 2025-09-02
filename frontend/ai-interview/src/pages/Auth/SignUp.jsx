@@ -2,36 +2,62 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../component/inputs/Input";
 import ProfilePhotoSelector from "../../component/inputs/ProfilePhotoSelector";
+import { validateEmail } from "../../utils/helper";
 
-
-  //입력받고 셋팅할 변수만들기
-  // 프로필, 이름, 이메일, 비밀번호
+//입력받고 셋팅할 변수만들기
+// 프로필, 이름, 이메일, 비밀번호
 const SignUp = ({ setCurrentPage }) => {
-
-  const [profilePic, setProfilePic] = useState(null); 
+  const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  //회원가입 폼 만들기
+  //회원가입 버튼 눌렀을 때 실행되는 함수
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    let profileImageUrl = "";
+
+    if (!fullName) {
+      setError("이름을 입력해 주세요");
+    }
+
+    if (!validateEmail(email)) {
+      setError("이메일을 입력해 주세요");
+    }
+
+    if (!password) {
+      setError("비밀번호를 입력해 주세요");
+    }
+
+    setError("");
+
+    //회원가입 API 호출
+    try {
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.massage);
+      } else {
+        setError("로그인에 실패했습니다. 죄송하지만 다시 시도해주세요");
+      }
+    }
   };
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-12 flex flex-col justify-center">
       <h3 className="text-lg font-semibold text-black ">계정 생성하기</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-8">아래 정보를 입력하고 지금 바로 가입하세요</p>
+      <p className="text-xs text-slate-700 mt-[5px] mb-8">
+        아래 정보를 입력하고 지금 바로 가입하세요
+      </p>
 
       <form onSubmit={handleSignUp}>
-
-        <ProfilePhotoSelector image = {profilePic} setImage={setProfilePic} />
+        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
         <div className="grid grid-cols-1 md:grid-cols-1 gap-2 mb-5">
-          <Input 
+          <Input
             value={fullName}
             onChange={({ target }) => setFullName(target.value)}
             label="이름"
@@ -63,7 +89,7 @@ const SignUp = ({ setCurrentPage }) => {
         </button>
 
         <p className="text-[13px] text-slate-800 mt-3">
-          이미 가입하셨나요? {" "}
+          이미 가입하셨나요?{" "}
           <button
             className="font-medium text-primary underline cursor-pointer"
             onClick={() => {

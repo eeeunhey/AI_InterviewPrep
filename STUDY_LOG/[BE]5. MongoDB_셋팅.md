@@ -36,7 +36,7 @@ mongodb+srv://test:<db_password (비밀번호 넣기)>
 
 Edit Password 버튼 클릭한다 -> Autogenerate Secure Password 버튼 클릭 -> 비민번호 자동생성 -> copy 클릭 -> .env 들어가서 붙여넣으면 된다 mongodb+srv://test: 복사한 비밀번호 붙여넣음
 
-처음 생성 시 copy를 누르면 그 비밀번호로 고정되는거 같다.. 잘 확인
+
 
 Server.js
 DB를 연결하기 위해 
@@ -51,3 +51,7 @@ const connectDB = require("./config/db"); 상단에 추가해야 한다
  Server running on port 8000
 MongoDB connected
  위 메세지가 뜬다면 잘 연결됬다는 의미이다
+
+ ---
+
+DATABASE -> Clusters -> Clusters 보드 내 Browse Collections 클릭

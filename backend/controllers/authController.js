@@ -86,9 +86,13 @@ const loginUser = async (req, res) => {
 // @access Private {Requires JWT}
 const getUserProfile = async (req, res) => {
     try {
-
+      const user = await User.findById(req.user.id).select("-password");
+      if(!user) {
+        return res.status(404).json({ message: "사용자를 찾을 수 없습니다"});
+      }
+      res.json(user);
     } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message});
+        res.status(500).json({ message: "오류가 발생했습니다", error: error.message});
     }
 };
 
