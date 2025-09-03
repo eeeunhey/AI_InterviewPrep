@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../component/inputs/Input";
 import ProfilePhotoSelector from "../../component/inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
+import { UserContext } from "../../context/userContext";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../utils/apiPaths";
 
 //입력받고 셋팅할 변수만들기
 // 프로필, 이름, 이메일, 비밀번호
@@ -13,6 +16,7 @@ const SignUp = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(null);
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   //회원가입 버튼 눌렀을 때 실행되는 함수
@@ -37,6 +41,27 @@ const SignUp = ({ setCurrentPage }) => {
 
     //회원가입 API 호출
     try {
+      // 이미지가 있을 경우 업로드
+      if (profilePic) {
+        const imgUploadRes = await uploadImage(profilePic);
+        profileImageUrl = imgUploadRes.imageUrl || "";
+      }
+
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: fullName,
+        email,
+        password,
+        profileImageUrl,
+      });
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        navigate("/dashboard");
+      }
+
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.massage);
