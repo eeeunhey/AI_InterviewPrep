@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../component/inputs/Input";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { UserContext } from "../../context/userContext";
 
 
 const Login = ({ setCurrentPage }) => {
@@ -9,6 +11,8 @@ const Login = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const { updateUser } = useContext(UserContext);
+  
   const navigate = useNavigate();
 
   //로그인 버튼 눌렀을 때 실행되는 함수
@@ -29,6 +33,16 @@ const Login = ({ setCurrentPage }) => {
 
       //로그인 API 호출하기 위한 코드
       try {
+        const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+          email,
+          password,
+        });
+        const { token } = response.data;
+
+        if (token) {
+          localStorage.setItem("token", token);
+          navigate("/dashboard");
+        }
       } catch(error) {
         if(error.response && error.response.data.message) {
           setError(error.response.data.massage);
@@ -51,7 +65,7 @@ const Login = ({ setCurrentPage }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             label="이메일 주소"
-            placeholder="heysee@example.com"
+            placeholder="test@example.com"
             type="email"
             autoComplete="email"
           />
