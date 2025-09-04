@@ -150,3 +150,39 @@ Express에서 Middleware = 요청(request)과 응답(response) 사이에서 실�
 🔹 Middleware to handle CORS
 즉, CORS 문제를 해결하기 위해 Express에 cors라는 미들웨어를 장착하는 것
 이 미들웨어가 브라우저에게 "이 서버는 다른 Origin에서도 요청 허용해"라고 응답 헤더를 달아서 차단을 방지 한다
+
+
+1. className을 쓰는 3가지 대표적인 경우
+    고정 (그냥 문자열만 붙일 때)
+    <div className="box red">고정 클래스</div>
+
+2. 조건부 (상태나 조건에 따라 붙일 때)
+    <div className={isActive ? "box red" : "box gray"}>
+      조건부 클래스
+    </div>
+
+3. 동적 (여러 클래스 조합할 때)
+    const base = "box";
+    const color = "red";
+    <div className={`${base} ${color}`}>동적 클래스</div>
+
+
+
+---
+1. axios란?
+    axios는 브라우저(또는 Node.js)에서 HTTP 요청을 쉽게 보낼 수 있게 도와주는 라이브러리예요.
+    예를 들어 axios.post()는 서버에 POST 요청을 보내는 함수예요.
+
+2. axios.post 기본형
+    axios.post(url, data, options);
+    url → 요청을 보낼 서버 주소 (예: "http://localhost:5000/api/auth/register")
+    data → 서버에 보낼 JSON 데이터 (예: { name: "홍길동", email: "..." })
+    options → 추가 설정(헤더, 토큰 등)
+
+3. await 붙는 이유
+    axios는 비동기 함수라서 결과가 바로 안 나와요.
+    즉, axios는 Promise를 반환합니다.
+
+    예시:
+    const response = axios.post("/url", { name: "홍길동" });
+    console.log(response); // ❌ Promise 객체만 나옴

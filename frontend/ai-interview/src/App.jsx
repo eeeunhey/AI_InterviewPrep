@@ -5,9 +5,11 @@ import { Toaster } from "react-hot-toast"
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Home/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
+import UserProvider from "./context/userContext";
 
 const App = () => {
     return (
+      <UserProvider>
         <div >
             <Router>
               <Routes>
@@ -25,8 +27,8 @@ const App = () => {
                 },
               }}  
             />
-
         </div>
+        </UserProvider>
     );
 };
 

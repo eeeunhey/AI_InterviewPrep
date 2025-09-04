@@ -121,3 +121,5 @@ module.exports = mongoose.model("Session", sessionSchema);
   "createdAt": "2025-08-31T08:00:00.000Z",
   "updatedAt": "2025-08-31T08:10:00.000Z"
 }
+
+-> DB.js를 설정하자

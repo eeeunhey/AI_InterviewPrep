@@ -57,6 +57,14 @@ src/
     4. helper.js
     5. uploadImage.js
 
+폴더 역할:
+components = 재사용 UI
+context = 전역 상태 (로그인, 사용자 정보)
+pages/Auth = 인증 관련 화면
+pages/Home = 로그인 후 내부 대시보드
+pages/InterviewPrep = 면접 준비 기능
+LandingPage = 서비스 소개/첫 화면
+
 
 ## cmd 창에 
 npm i axios moment framer-motion react-markdown react-syntax-highlighter remark-gfm react-hot-toast react-icons react-router-dom
