@@ -17,7 +17,11 @@ const uploadImage = async (imageFile) => {
       }
     );
     return response.data;
+    // axios로 요청하면, axios는 응답을 data에 객체로 저장
   } catch (error) {
-    console.error(error);
+    console.error("이미지 업로드 중 오류 발생: ",error);
+    throw error; // 에러를 상위 로직에 전달
   }
 };
+
+export default uploadImage;

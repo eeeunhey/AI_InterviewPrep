@@ -5,7 +5,8 @@ import ProfilePhotoSelector from "../../component/inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
 import { UserContext } from "../../context/userContext";
 import axiosInstance from "../../utils/axiosInstance";
-import { API_PATHS } from "../utils/apiPaths";
+import { API_PATHS } from "../../utils/apiPaths";
+
 
 //입력받고 셋팅할 변수만들기
 // 프로필, 이름, 이메일, 비밀번호
@@ -66,7 +67,7 @@ const SignUp = ({ setCurrentPage }) => {
       if (error.response && error.response.data.message) {
         setError(error.response.data.massage);
       } else {
-        setError("로그인에 실패했습니다. 죄송하지만 다시 시도해주세요");
+        setError("회원가입에 실패했습니다. 죄송하지만 다시 시도해주세요");
       }
     }
   };

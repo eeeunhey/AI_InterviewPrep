@@ -11,15 +11,14 @@ import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../component/Cards/ProfileInfoCard";
 
 const LandingPage = () => {
-  const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [openAutoModal, setOpenAutoModel] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
-  
 
   const handleCTA = () => {
     if (!user) {
-    setOpenAutoModel(true);
+      setOpenAutoModel(true);
     } else {
       navigate("/dashboard");
     }
@@ -36,17 +35,20 @@ const LandingPage = () => {
         <div className="container mx-auto max-w-6xl px-4 pt-6 pb-[200px] relative z-10">
           {/* 헤더 */}
           <header className="flex justify-between items-center mb-12">
-            <div className="text-xl text-gray-800 font-bold">Interview Prep AI</div>
-            {user ? 
-            (<ProfileInfoCard /> ) : (
-            <button
-              type="button"
-              className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full
+            <div className="text-xl text-gray-800 font-bold">
+              Interview Prep AI
+            </div>
+            {user ? (
+              <ProfileInfoCard />
+            ) : (
+              <button
+                type="button"
+                className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full
                          hover:from-[#e57f0d] hover:to-[#f0a14e] border border-white/80 transition-colors cursor-pointer"
-              onClick={() => setOpenAutoModel(true)}
-            >
-              Login / SignUp
-            </button>
+                onClick={() => setOpenAutoModel(true)}
+              >
+                Login / SignUp
+              </button>
             )}
           </header>
 
@@ -77,9 +79,10 @@ const LandingPage = () => {
             {/* 오른쪽: 설명문구 + CTA 버튼 */}
             <div className="w-full md:w-1/2 md:pl-6">
               <p className="text-[20px] text-gray-800/90 mb-6 md:pr-8">
-                당신의 커리어에 꼭 맞춘 질문과 답변. 필요할 때 깊이 있는 해설을 열고,
-                배운 내용을 나만의 방식으로 정리하세요. 준비에서 완벽한 자신감까지 —
-                최고의 면접 파트너가 되어드립니다.
+                당신의 커리어에 꼭 맞춘 질문과 답변을 제공합니다. 질문에 대한
+                상세한 해설을 제공합니다. 배운 내용을 나만의 방식으로
+                정리하세요. 준비에서 완벽한 자신감까지 — 최고의 면접 파트너가
+                되어드립니다.
               </p>
 
               <div className="flex gap-3">
@@ -113,7 +116,9 @@ const LandingPage = () => {
                 <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-400"></span>
                 <span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
                 <span className="inline-block w-2.5 h-2.5 rounded-full bg-green-400"></span>
-                <span className="ml-3 truncate">https://timetoProgram.com/interview-prep</span>
+                <span className="ml-3 truncate">
+                  https://timetoProgram.com/interview-prep
+                </span>
               </div>
               {/* 이미지 */}
               <div className="p-3">
@@ -193,7 +198,9 @@ const LandingPage = () => {
       >
         <div>
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
-          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
+          {currentPage === "signup" && (
+            <SignUp setCurrentPage={setCurrentPage} />
+          )}
         </div>
       </Modal>
     </>

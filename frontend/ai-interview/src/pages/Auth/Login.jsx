@@ -4,7 +4,7 @@ import Input from "../../component/inputs/Input";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { UserContext } from "../../context/userContext";
-import { API_PATHS } from "../utils/apiPaths";
+import { API_PATHS } from "../../utils/apiPaths";
 
 
 const Login = ({ setCurrentPage }) => {
