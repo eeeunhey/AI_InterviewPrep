@@ -38,7 +38,7 @@ app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 // 서버 업로드 폴더
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // 서버 시작!
 const PORT = process.env.PORT || 5000;
