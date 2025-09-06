@@ -36,7 +36,7 @@ const LandingPage = () => {
           {/* 헤더 */}
           <header className="flex justify-between items-center mb-12">
             <div className="text-xl text-gray-800 font-bold">
-              Interview Prep AI
+              Velin AI
             </div>
             {user ? (
               <ProfileInfoCard />
@@ -59,7 +59,7 @@ const LandingPage = () => {
               <div className="flex items-center mb-3">
                 <div className="flex items-center gap-2 text-[13px] text-amber-700 font-semibold bg-amber-100/80 px-3 py-1 rounded-full border border-amber-300">
                   <LuSparkles className="shrink-0" />
-                  AI Ace Interview
+                  AI Interview Prep
                 </div>
               </div>
 
