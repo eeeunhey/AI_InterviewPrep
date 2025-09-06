@@ -6,51 +6,52 @@ import axiosInstance from "../../utils/axiosInstance";
 import { UserContext } from "../../context/userContext";
 import { API_PATHS } from "../../utils/apiPaths";
 
-
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const { updateUser } = useContext(UserContext);
-  
+
   const navigate = useNavigate();
 
   //로그인 버튼 눌렀을 때 실행되는 함수
   const handleLogin = async (e) => {
     e.preventDefault();
 
-      if(!validateEmail(email)) {
-        setError("올바른 이메일 주소를 입력하세요")
-        return;
+    if (!validateEmail(email)) {
+      setError("올바른 이메일 주소를 입력하세요");
+      return;
+    }
+
+    if (!password) {
+      setError("비밀번호를 다시 입력해 주세요");
+      return;
+    }
+
+    setError("");
+
+    //로그인 API 호출하기 위한 코드
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password,
+      });
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("token", data.token);
+        updateUser(user);
+        navigate("/dashboard");
       }
-
-      if (!password) {
-        setError("비밀번호를 다시 입력해 주세요")
-        return;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.massage);
+      } else {
+        setError("로그인에 실패했습니다. 죄송하지만 다시 시도해주세요");
       }
-
-      setError("");
-
-      //로그인 API 호출하기 위한 코드
-      try {
-        const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
-          email,
-          password,
-        });
-        const { token } = response.data;
-
-        if (token) {
-          localStorage.setItem("token", token);
-          navigate("/dashboard");
-        }
-      } catch(error) {
-        if(error.response && error.response.data.message) {
-          setError(error.response.data.massage);
-        } else {
-          setError("로그인에 실패했습니다. 죄송하지만 다시 시도해주세요")
-        }
-      }
+    }
   };
 
   return (

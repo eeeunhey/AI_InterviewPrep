@@ -7,6 +7,7 @@ const DashboardLayout = ({ children }) => {   // ✅ children을 props로 받음
 
   return (
     <div>
+        
       <Navbar />
 
       {/* user가 있을 때만 children 렌더링 */}
