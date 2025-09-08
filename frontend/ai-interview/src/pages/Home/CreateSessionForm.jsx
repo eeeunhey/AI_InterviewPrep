@@ -4,6 +4,7 @@ import Input from "../../component/inputs/Input";
 import SpinnerLoader from "../../component/Loader/SpinnerLoader";
 import { API_PATHS } from "../../utils/apiPaths";
 import axiosInstance from "../../utils/axiosInstance";
+import InterviewPrep from "../InterviewPrep/InterviewPrep";
 
 const CreateSessionForm = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const CreateSessionForm = () => {
       return;
     }
 
-    setError(null);
+    setError("");
     setIsLoading(true);
 
     try {
@@ -114,7 +115,7 @@ const CreateSessionForm = () => {
 
         <Input
           value={formData.description}
-          onChange={({ target }) => handleChange("description", target.value)} // ← 쉼표 오타 수정
+          onChange={({ target }) => handleChange("description", target.value)}
           label="비고 / 메모"
           placeholder="이번 연습을 위한 목표나 추가 메모를 남겨주세요"
           type="text"
