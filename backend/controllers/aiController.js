@@ -1,9 +1,10 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenAI } = require("@google/genai");
 const { concepExplainPrompt, questionAnswerPrompt } = require("../utils/prompts");
 
-
-const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = ai.getGenerativeModel({ model: "gemini-pro" });
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("GEMINI_API_KEY is missing");
+}
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY});
 
 // @desc Gemini를 사용해 면접 질문과 답변을 생성한다
 // @route POST /api/ai/generate-questions
@@ -11,16 +12,16 @@ const model = ai.getGenerativeModel({ model: "gemini-pro" });
 
 const generateInterviewQuestions = async (req, res) => {
     try {
-        const { role, experience, topicToFocus, numberOfQuestions } = req.body;
+        const { role, experience, topicsToFocus, numberOfQuestions } = req.body;
 
-        if (!role || !experience || !topicToFocus || !numberOfQuestions) {
+        if (!role || !experience || !topicsToFocus || !numberOfQuestions) {
             return res.status(400).json({ message: "필수 입력 항목이 누락되었습니다"});
         }
 
-        const prompt = questionAnswerPrompt(role, experience, topicToFocus, numberOfQuestions);
+        const prompt = questionAnswerPrompt(role, experience, topicsToFocus, numberOfQuestions);
 
-        const response = await ai.model.generateContent({
-            model: "Gemini-2.5-Flash-Lite",
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash-lite",
             contents: prompt,
         });
 
@@ -59,7 +60,7 @@ const generateConceptExplanation = async (req, res) => {
         const prompt = concepExplainPrompt(question);
 
         const response = await ai.model.generateContent({
-            model: "Gemini-2.5-Flash-Lite",
+            model: "gemini-2.5-flash-Lite",
             contents: prompt,
         });
 
