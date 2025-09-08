@@ -15,8 +15,10 @@ const App = () => {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/Interview-prep" element={<InterviewPrep />} />
-            <Route path="/interview-prep/:id" element={<InterviewPrep />} />
+            <Route
+             path="/Interview-prep/:sessionId" 
+             element={<InterviewPrep />} 
+             />
           </Routes>
         </Router>
 
