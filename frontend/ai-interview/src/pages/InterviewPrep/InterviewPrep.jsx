@@ -1,39 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { AnimatePresence, motion } from "framer-motion";
-import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
-import SpinnerLoader from "../../component/Loader/SpinnerLoader";
+import "moment/locale/ko"; // 날짜 포맷팅 유틸 ko 기준으로 날짜 표기
+import { AnimatePresence, motion } from "framer-motion"; // Framer Motion: 진입/퇴장/레이아웃 애니메이션
+import { LuCircleAlert, LuListCollapse } from "react-icons/lu"; //// 아이콘들
+import SpinnerLoader from "../../component/Loader/SpinnerLoader"; // 로딩 스피너 컴포넌트
 import { toast } from "react-hot-toast";
-import DashboardLayout from "../../component/layout/DashboardLayout";
-import RoleInfoHeader from "./components/RoleInfoHeader";
-import axiosInstance from "../../utils/axiosInstance";
-import { API_PATHS } from "../../utils/apiPaths";
-import "moment/locale/ko";
+import DashboardLayout from "../../component/layout/DashboardLayout"; //// 페이지 상단/좌측 레이아웃 래퍼
+import RoleInfoHeader from "./components/RoleInfoHeader"; // 역할/설명 등 요약 헤더
+import axiosInstance from "../../utils/axiosInstance"; // 공용 Axios 인스턴스(토큰/베이스URL/인터셉터 설정됨)
+import { API_PATHS } from "../../utils/apiPaths"; //// API 엔드포인트 경로 모음
+import QuestionInfoCard from "../../component/Cards/QuestionInfoCard";
 
 const InterviewPrep = () => {
-  const { sessionId } = useParams();
+  const { sessionId } = useParams(); // URL의 :sessionId 파라미터 추출
 
-  const [sessionData, setSessionData] = useState(null);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [sessionData, setSessionData] = useState(null); // 세션 상세 데이터(역할/질문 목록/설명 등)
+  const [errorMsg, setErrorMsg] = useState(""); // 에러 메시지(표시용)
 
-  const [openLeanMoreDrawerm, setOpenLeanMoreDrawer] = useState(false);
-  const [explanation, setExplanation] = useState(null);
+  const [openLeanMoreDrawer, setOpenLeanMoreDrawer] = useState(false); // 우측 ‘더 알아보기’ 드로어 열림 상태
+  const [explanation, setExplanation] = useState(null); // 질문에 대한 개념/배경 설명 텍스트 상태
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isUpdateLoader, setIsUpdateLoader] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // 페이지 최초 데이터 로딩 상태
+  const [isUpdateLoader, setIsUpdateLoader] = useState(false); // 핀 토글/질문 추가 등 업데이트 중 로딩 상태
 
   // 세션 ID로 데이터를 가져오기 위한 비동기 함수
   const fetchSessionDatailsById = async () => {
     try {
+      // /sessions/:id 같은 형태로 단건 조회
       const response = await axiosInstance.get(
         API_PATHS.SESSION.GET_ONE(sessionId)
       );
 
+      // API 스키마: { session: {...} } 형태라고 가정
       if (response.data && response.data.session) {
         setSessionData(response.data.session);
       }
     } catch (error) {
+      // 네트워크/서버 에러 로깅
       console.error("Error:", error);
     }
   };
@@ -47,15 +51,19 @@ const InterviewPrep = () => {
   // 이미 생성된 세션에 새 질문들을 서버로 보내 저장하고, 저장 결과를 비동기로 받아오는 기능
   const uploadMoreQuestions = async () => {};
 
+  // 마운트 시(또는 sessionId 변동 시) 세션 로딩
   useEffect(() => {
     if (sessionId) {
       fetchSessionDatailsById();
     }
 
+    // 화면 렌더링 시작
     return () => {};
   }, []);
   return (
+    // 전체 페이지 레이아웃 래퍼(헤더/사이드바 등 포함)
     <DashboardLayout>
+      {/* 상단 역할/토픽/경력/질문수/설명/최근 업데이트일 요약 표시 */}
       <RoleInfoHeader
         role={sessionData?.role || ""}
         topicsToFocus={sessionData?.topicsToFocus || ""}
@@ -70,7 +78,62 @@ const InterviewPrep = () => {
             : ""
         }
       />
+      ;{/* 메인 컨테이너: 가운데 정렬 + 상하 여백 + 반응형 좌우 패딩 */}
+      <div className="container mx-auto pt-4 pb-4 px-4 md:px-0">
+                {/* 섹션 제목 */}
+        <h2 className="text-lg font-semibold color-black">Interview Q & A</h2>
+        
+        {/* 12컬럼 그리드: 본문/사이드 드로어 구성 */}
+        <div className="grid grid-cols-12 gap-4 mt-5 mb-10">
+                    {/* 본문 영역: 드로어가 열리면 7, 닫히면 8 컬럼 차지 */}
+          <div
+            className={`col-span-12 ${
+              openLeanMoreDrawer ? "md:col-span-7" : "md:col-span-8"
+            }`}
+          >
+
+            {/* 리스트 아이템 진입/퇴장 애니메이션 핸들링 */}
+            <AnimatePresence>
+              {/* 질문 목록을 순회하여 카드 렌더링 */}
+              {sessionData?.questions?.map((data, index) => (
+                // 각 질문 블록 컨테이너(애니메이션 래퍼)
+                <motion.div
+                  key={data?._id ?? index}     // React/Framer가 아이템 식별
+                  initial={{ opacity: 0, y: -20 }}    // 첫 진입 시 위에서 살짝 슬라이드
+                  animate={{ opacity: 1, y: 0 }}    // 표시 상태
+                  exit={{ opacity: 0, scale: 0.95 }}    // 제거 시 살짝 축소/페이드
+                  // 레이아웃 위치 변화 애니메이션
+                  layout
+
+                  // 동일 아이템 간 공유 레이아웃/크로스페이드가 필요하면 layoutId 사용
+                  layoutId={`question-${data?._id ?? index}`}   // 공유 레이아웃 전환이 필요할 때 사용
+                  transition={{
+                    type: "spring",   // 스프링 기반 자연스러운 움직임
+                    stiffness: 100,   // 스프링 강성(값↑ → 더 단단)
+                    damping: 15,      // 감쇠(값↑ → 덜 출렁)
+                    delay: index * 0.1, // 리스트 아이템 순차 등장
+                  }}
+                  className="mb-3"    // 카드 간 간격
+                >
+                  <QuestionInfoCard
+                    question={data?.question}   // 질문 텍스트
+                    answer={data?.answer}       // 답변 텍스트(요약/모범답 등)
+                    isPinned={data?.isPinned}   // 상단 고정 여부
+                    openLearnMore={() =>        // 더 알아보기 클릭 시
+                      generateConceptExplanation(data?.question)
+                    }
+                    onTogglePin={() =>           // 핀 토글 클릭 시
+                      toggleQuestionPinStatus(data?._id ?? index)
+                    }
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </DashboardLayout>
+    // 구현 완료 -> frontend/Cards/QuestionCard.jsx
   );
 };
 
