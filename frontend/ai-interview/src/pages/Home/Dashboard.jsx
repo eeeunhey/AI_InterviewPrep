@@ -54,9 +54,9 @@ const Dashboard = () => {
                   experience={data?.experience || "-"}
                   questions={data?.questions?.length || "-"}
                   description={data?.description || ""}
-                  lastUpdataed={
+                  lastUpdated={
                     data?.updatedAt
-                      ? moment(data.updatedAt).format("Do MMM YYYY")
+                      ? moment(data.updatedAt).locale("ko").format("YYYY년 M월 D일")
                       : ""
                   }
                   onSelect={() => navigate(`/interview-prep/${data?._id}`)}

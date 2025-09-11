@@ -1,25 +1,14 @@
 import React from "react";
+import { useEffect } from "react";
 
 const RoleInfoHeader = ({
-  role = "",
-  topicsToFocus = "",
-  experience = 0,
-  questions = 0,
+  role,
+  topicsToFocus,
+  experience,
+  questions,
   description, // 아직 미사용
-  lastUpdated = "",
+  lastUpdated,
 }) => {
-  const topics =
-    Array.isArray(topicsToFocus) ? topicsToFocus.join(", ") : topicsToFocus;
-
-  const yearsLabel = experience === 1 ? "Year" : "Years";
-
-  // 보기 좋은 날짜 포맷 (값이 유효할 때만)
-  const lastUpdatedLabel = lastUpdated
-    ? new Intl.DateTimeFormat("ko-KR", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }).format(new Date(lastUpdated))
-    : "-";
 
   return (
     <div className="bg-white relative">
@@ -30,8 +19,8 @@ const RoleInfoHeader = ({
               <div className="flex justify-between items-start">
                 <div>
                   <h2 className="text-2xl font-semibold">{role}</h2>
-                  <p className="text-sm text-gray-900 mt-1 line-clamp-2">
-                    {topics}
+                  <p className="text-sm text-medium text-gray-900 mt-1">
+                    {topicsToFocus}
                   </p>
                 </div>
                 {/* 필요 시 우측에 버튼/액션 배치 */}
@@ -40,14 +29,27 @@ const RoleInfoHeader = ({
           </div>
         </div>
 
-        {/* 하단 메타 정보는 container 내부로 */}
-        <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-700">
-          <div>
-            Experience : {experience} {yearsLabel}
+        <div className="flex items-center gap-3 mt-4">
+          <div className="text-[10px] font-semibold text-white bg-black px-3 py-1 rounded-full ">
+            기술 경험 : {experience} {experience == 1 ? "Year" : "Years"}
           </div>
-          <div>{questions} Q&A</div>
-          <div>Last Update: {lastUpdatedLabel}</div>
+
+          <div className="text-[10px] font-semibold text-white bg-black px-3 py-1 rounded-full">
+            {questions} Q&A
+          </div>
+          <div className="text-[10px] font-semibold text-white bg-black px-3 py-1 rounded-full">
+            최근 수정일 : {lastUpdated}
+          </div>
         </div>
+      </div>
+
+      <div className="w-[40vw] md:w-[30vw] h-[200px] flex items-center justify-center bg-white overflow-hidden absolute top-0 right-0">
+        <div className="w-16 h-16 bg-lime-400 blur-[65px] animate-blob1" />
+        <div className="w-16 h-16 bg-teal-400 blur-[65px] animate-blob2" />
+        <div className="w-16 h-16 bg-cyan-300 blur-[45px] animate-blob3" />
+        <div className="w-16 h-16 bg-fuchsia-200 blur-[45px] animate-blob1" />
+
+        <div />
       </div>
     </div>
   );

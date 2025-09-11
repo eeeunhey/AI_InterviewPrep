@@ -9,7 +9,7 @@ const SummaryCard = ({
   experience,
   questions,
   description,
-  lastUpdataed,
+  lastUpdated,
   onSelect,
   onDelete,
   }) => {  
@@ -58,7 +58,7 @@ const SummaryCard = ({
             <div className="px-3 pb-3">
                 <div className="flex items-center gap-3 mt-4">
                     <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full ">
-                        Experience: {experience} {experience == 1 ? "Year" : "Years"}
+                        기술 경험 : {experience} {experience == 1 ? "Year" : "Years"}
                     </div>
 
                     <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">
@@ -66,7 +66,7 @@ const SummaryCard = ({
                     </div>
 
                     <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5] border-gray-900 rounded-full">
-                        Last Updated: {lastUpdataed}
+                        최종 수정일 : {lastUpdated}
                     </div>
 
                     {/*Description */}

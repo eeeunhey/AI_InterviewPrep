@@ -7,6 +7,9 @@ import SpinnerLoader from "../../component/Loader/SpinnerLoader";
 import { toast } from "react-hot-toast";
 import DashboardLayout from "../../component/layout/DashboardLayout";
 import RoleInfoHeader from "./components/RoleInfoHeader";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import "moment/locale/ko";
 
 const InterviewPrep = () => {
   const { sessionId } = useParams();
@@ -21,7 +24,19 @@ const InterviewPrep = () => {
   const [isUpdateLoader, setIsUpdateLoader] = useState(false);
 
   // 세션 ID로 데이터를 가져오기 위한 비동기 함수
-  const fetchSessionDatailsById = async () => {};
+  const fetchSessionDatailsById = async () => {
+    try {
+      const response = await axiosInstance.get(
+        API_PATHS.SESSION.GET_ONE(sessionId)
+      );
+
+      if (response.data && response.data.session) {
+        setSessionData(response.data.session);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   // 사용자가 입력한 개념을 이해하기 쉽게 설명 텍스트로 생성하는 기능
   const generateConceptExplanation = async (question) => {};
@@ -48,8 +63,10 @@ const InterviewPrep = () => {
         questions={sessionData?.questions?.length || "-"}
         description={sessionData?.description || ""}
         lastUpdated={
-          sessionData?.updateAt
-            ? moment(sessionData.updateAt).format("Do MMM YYY")
+          sessionData?.updatedAt
+            ? moment(sessionData.updatedAt)
+                .locale("ko")
+                .format("YYYY년 M월 D일")
             : ""
         }
       />
