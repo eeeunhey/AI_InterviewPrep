@@ -186,3 +186,15 @@ Express에서 Middleware = 요청(request)과 응답(response) 사이에서 실�
     예시:
     const response = axios.post("/url", { name: "홍길동" });
     console.log(response); // ❌ Promise 객체만 나옴
+
+
+    
+    이미지값이 안들어감
+    backend에 uploads 파일을 깜빡하고 안만들음
+    만들고나서 api로 값을 전달해봤는데 잘 들어감
+    해결
+      정말 어처구니 없게도 import를 안해서 생긴 일이었다 .
+      내 하루... ㅠㅠㅠㅠㅠㅠㅠㅠ
+      앙............ㅠㅠㅠㅠㅠㅠㅠㅠ
+      4시간 뻘짓한듯 와... 정말 
+

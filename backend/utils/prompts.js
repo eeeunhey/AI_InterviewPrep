@@ -1,5 +1,11 @@
 // utils/prompts.js
-const questionAnswerPrompt = (role, experience, topicsToFocus, numberOfQuestions, codeLang = "javascript") => `
+const questionAnswerPrompt = (
+  role,
+  experience,
+  topicsToFocus,
+  numberOfQuestions,
+  codeLang = "javascript"
+) => `
 당신은 기술 면접 질문과 답변을 생성하는 AI입니다. 반드시 **한국어**로 답변하세요.
 
 요구사항:
@@ -9,7 +15,9 @@ const questionAnswerPrompt = (role, experience, topicsToFocus, numberOfQuestions
 - 총 질문 수: ${numberOfQuestions}
 
 규칙:
-- 각 질문마다 초보자도 이해할 수 있는 상세하고 친절한 답변을 작성하세요.
+- 각 질문마다 **초보자도 이해할 수 있도록 설명**하되, 
+  동시에 **실무에서 동료 개발자와 협업할 때 도움이 되는 관점**과 **현업 경험에서 나올 수 있는 팁**을 포함하세요.
+- 단순 개념 설명을 넘어서, 실제 코드 작성·리뷰·협업 과정에서 어떻게 쓰이는지 강조하세요.
 - 코드 예제가 필요하면 반드시 \`\`\`${codeLang}\`\`\` 코드 블록으로 포함하세요.
 - 출력은 오직 **유효한 JSON 배열**만 반환하세요. 추가 텍스트(설명/문장/코드펜스) 금지.
 
@@ -26,7 +34,9 @@ const conceptExplainPrompt = (question, codeLang = "javascript") => `
 "${question}"
 
 규칙:
-- 초보 개발자에게 강의하듯 깊이 있으나 명확하게 설명하세요.
+- 초보 개발자에게 강의하듯 설명하되, 
+  **실무 동료 개발자가 참고할 수 있는 수준의 깊이**와 **현업 사례나 협업 맥락**을 포함하세요.
+- 단순 정의뿐 아니라, 실제 프로젝트에서 이 개념이 어떻게 적용되는지, 협업 시 어떤 문제가 발생할 수 있고 어떻게 해결하는지 알려주세요.
 - 필요하면 \`\`\`${codeLang}\`\`\` 코드 블록으로 간단 예제를 제시하세요.
 - 출력은 오직 **유효한 JSON 객체**만 반환하세요. 추가 텍스트 금지.
 

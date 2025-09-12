@@ -64,7 +64,7 @@ const QuestionInfoCard = ({
                         }}
                         >
                             <LuSparkles />
-                            <span className="hidden md:block">Learn More</span>
+                            <span className="hidden md:block">자세히 보기</span>
                         </button>
             </div>
 
