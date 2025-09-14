@@ -1,8 +1,20 @@
 import React from 'react'
 
-const DeleteAlertContent = () => {
+const DeleteAlertContent = ({content, onDelete}) => {
   return (
-    <div>DeleteAlertContent</div>
+    <div className="p-5">
+      <p className="text-[14px]">{content}</p>
+
+      <div className="flex justyfy-end mt-6">
+        <button
+          type="button"
+          className="btn-small"
+          onClick={onDelete}
+          >
+            삭제하기
+          </button>
+      </div>
+      </div>
   )
 }
 

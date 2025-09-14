@@ -34,9 +34,22 @@ const Dashboard = () => {
     }
   };
 
-  const deleteSession = async () => {
-  };
+  const deleteSession = async (sessionData) => {
+    try {
+      await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
 
+
+      toast.success("삭제가 완료되었습니다");
+      setOpenDeleteAlert({
+        open: false,
+        data: null,
+      });
+      fetchAllSessions();
+    } catch (error) {
+      console.error("Error deleting session data:", error);
+    }
+  
+  };
   useEffect(() => {
     fetchAllSessions();
   }, []);
@@ -92,14 +105,13 @@ const Dashboard = () => {
           onClose={() => {
             setOpenDeleteAlert({ open: false, data: null });
           }}
-          title="Delete Alert"
+          title="삭제하기"
     >
-      <div className="">
+      <div className="w-[30vm]">
         <DeleteAlertContent
           content="해당 기록을 삭제하시겠습니까?"
           onDelete={() => deleteSession(openDeleteAlert.data)}
           />
-
       </div>
     </Modal>
     </DashboardLayout>
