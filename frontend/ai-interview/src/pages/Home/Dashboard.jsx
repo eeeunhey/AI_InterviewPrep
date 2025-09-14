@@ -10,6 +10,7 @@ import moment from "moment";
 import axiosInstance from "../../utils/axiosInstance";
 import Modal from "../../component/Modal";
 import CreateSessionForm from "./CreateSessionForm";
+import DeleteAlertContent from "../../component/DeleteAlertContent";
 
 
 const Dashboard = () => {
@@ -85,7 +86,22 @@ const Dashboard = () => {
               <CreateSessionForm />
             </div>
           </Modal>
-    
+
+          <Modal
+          isOpen={openDeleteAlert?.open}
+          onClose={() => {
+            setOpenDeleteAlert({ open: false, data: null });
+          }}
+          title="Delete Alert"
+    >
+      <div className="">
+        <DeleteAlertContent
+          content="해당 기록을 삭제하시겠습니까?"
+          onDelete={() => deleteSession(openDeleteAlert.data)}
+          />
+
+      </div>
+    </Modal>
     </DashboardLayout>
   )
 }

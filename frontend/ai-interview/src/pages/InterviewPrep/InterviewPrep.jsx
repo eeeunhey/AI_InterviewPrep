@@ -141,21 +141,9 @@ const InterviewPrep = () => {
         }
       );
 
-      const saved = Array.isArray(response?.data?.questions)
-        ? response.data.questions
-        : [];
-      setSessionData((prev) =>
-        prev
-          ? {
-              ...prev,
-              questions: [...(prev.questions || []), ...saved],
-              updatedAt: new Date().toISOString(),
-            }
-          : prev
-      );
-
       if (response.data) {
         toast.success("Q&A 추가 완료");
+        fetchSessionDatailsById();
       }
     } catch (error) {
       if (error.response && error.response.data.message) {

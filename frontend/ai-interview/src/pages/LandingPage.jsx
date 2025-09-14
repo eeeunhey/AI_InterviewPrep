@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HERO_IMG from "../assets/hero-img.png";
+import HERO_IMG1 from "../assets/heroImg.png";
 import { APP_FEATURES } from "../utils/data";
 import { useNavigate } from "react-router-dom";
 import { LuSparkles } from "react-icons/lu";
@@ -9,6 +10,7 @@ import SignUp from "./Auth/SignUp";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../component/Cards/ProfileInfoCard";
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
@@ -35,9 +37,7 @@ const LandingPage = () => {
         <div className="container mx-auto max-w-6xl px-4 pt-6 pb-[200px] relative z-10">
           {/* 헤더 */}
           <header className="flex justify-between items-center mb-12">
-            <div className="text-xl text-gray-800 font-bold">
-              Velin AI
-            </div>
+            <div className="text-xl text-gray-800 font-bold">Velin AI</div>
             {user ? (
               <ProfileInfoCard />
             ) : (
@@ -78,11 +78,11 @@ const LandingPage = () => {
 
             {/* 오른쪽: 설명문구 + CTA 버튼 */}
             <div className="w-full md:w-1/2 md:pl-6">
-              <p className="text-[20px] text-gray-800/90 mb-6 md:pr-8">
-                당신의 커리어에 꼭 맞춘 질문과 답변을 제공합니다. 질문에 대한
-                상세한 해설을 제공합니다. 배운 내용을 나만의 방식으로
-                정리하세요. 준비에서 완벽한 자신감까지 — 최고의 면접 파트너가
-                되어드립니다.
+              <p className="text-[20px] text-gray-800/90 mb-6 md:pr-4">
+                당신의 커리어에 맞춘 질문과 답변, 그리고 깊이 있는 해설을
+                제공합니다. 세심한 해설과 함께 배우고 정리하며, 스스로의 성장을
+                느껴보세요. 준비에서 자신감까지—당신 곁을 지키는 파트너가
+                되겠습니다.
               </p>
 
               <div className="flex gap-3">
@@ -96,40 +96,38 @@ const LandingPage = () => {
                 >
                   시작하기
                 </button>
-
-                <button
-                  type="button"
-                  className="text-sm font-medium text-gray-800/90 px-4 py-2.5 rounded-full hover:bg-white/70 border border-gray-200"
-                  onClick={() => navigate("/interview-prep/demo")}
-                >
-                  See Demo
-                </button>
               </div>
             </div>
           </div>
 
           {/* 히어로 하단 프리뷰 이미지 */}
           <div className="mt-50">
-            <div className="mx-auto max-w-5xl rounded-2xl border border-amber-200 bg-[#FFF6E7]/40 shadow-md">
-              {/* 브라우저 프레임 상단바 */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-amber-200/70 text-amber-800/70 text-xs">
-                <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-400"></span>
-                <span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-                <span className="inline-block w-2.5 h-2.5 rounded-full bg-green-400"></span>
-                <span className="ml-3 truncate">
-                  https://timetoProgram.com/interview-prep
-                </span>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }} // 처음 상태: 투명, 아래쪽 위치
+              animate={{ opacity: 1, y: 0 }} // 애니메이션 후 상태: 보임, 제자리
+              transition={{ duration: 0.8, ease: "easeOut" }} // 부드럽게 전환
+              className="mx-auto max-w-5xl rounded-2xl border border-amber-200 bg-[#FFF6E7]/40 shadow-md"
+            >
+              <div className="mx-auto max-w-5xl rounded-2xl border border-amber-200 bg-[#FFF6E7]/40 shadow-md">
+                {/* 브라우저 프레임 상단바 */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-amber-200/70 text-amber-800/70 text-xs">
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-green-400"></span>
+                  <span className="ml-3 truncate"></span>
+                </div>
+                {/* 이미지 */}
+                <div className="p-3">
+                  <motion.img
+                    src={HERO_IMG1}
+                    alt="Interview preparation illustration"
+                    className="w-full rounded-xl shadow-sm"
+                    loading="eager"
+
+                  />
+                </div>
               </div>
-              {/* 이미지 */}
-              <div className="p-3">
-                <img
-                  src={HERO_IMG}
-                  alt="Interview preparation illustration"
-                  className="w-full rounded-xl shadow-sm"
-                  loading="eager"
-                />
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
