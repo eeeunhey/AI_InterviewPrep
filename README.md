@@ -58,7 +58,7 @@
 - 프론트의 `InterviewPrep.jsx`에서 아코디언 형태로 확인하고,  
   `AIResponsePreview.jsx`로 **근거/예시/요약**을 함께 보여줍니다.
 
-> 목표는 함께 일하고 싶은 동료임을 드러내되, 나다운 전문적 판단과 고유한 관점을 잃지 않는 답을 준비하는 것입니다.
+> 함께 일하고 싶은 동료임을 드러내되, 나다운 전문적 판단과 고유한 관점을 잃지 않는 답을 준비하는 것을 목표로 합니다.
 
 ---
 
@@ -73,33 +73,36 @@
 
 > 실사용 흐름을 짧은 GIF로 모았습니다. (이미지는 클릭해 확대)
 
-### 1) 랜딩 → 회원가입/로그인
+### 1) 랜딩페이지 
 
-<table>
+<table align="center">
   <tr>
-    <td align="center">
+    <td align="center" >
       <b>랜딩 페이지</b><br/>
       <img src="frontend/ai-interview/public/demo/랜딩페이지.gif" alt="랜딩 페이지" width="750"/>
     </td>
   </tr>
 </table>
 
-<table>
+---
+### 1) 로그인 / 회원가입
+
+<table align="center">
   <tr>
-    <td align="center">
-      <b>회원가입</b><br/>
-      <img src="frontend/ai-interview/public/demo/회원가입.gif" alt="회원가입" width="480"/>
-    </td>
     <td align="center">
       <b>로그인</b><br/>
       <img src="frontend/ai-interview/public/demo/로그인.gif" alt="로그인" width="480"/>
+    </td>
+    <td align="center" width="20%">
+      <b>회원가입</b><br/>
+      <img src="frontend/ai-interview/public/demo/회원가입.gif" alt="회원가입" width="480"/>
     </td>
   </tr>
 </table>
 
 ---
 
-### 2) 대시보드(세션 목록)
+### 3) 대시보드(세션 목록)
 
 <p align="center">
   <img src="frontend/ai-interview/public/demo/질문리스트 페이지.gif" alt="세션/질문 리스트" width="900"/>
@@ -107,7 +110,7 @@
 
 ---
 
-### 3) ✨ 핵심: 폼 기반 질문 생성 + 실무 이론 가이드
+### 4) ✨ 폼 기반 질문 생성 + 실무 이론 가이드
 
 <p align="center">
   <img src="frontend/ai-interview/public/demo/질문생성페이지.gif" alt="질문 생성 폼" width="900"/>
@@ -115,35 +118,7 @@
 
 - 역할/경력/스택/키워드를 입력하면, 실무에서 실제로 확인하는 포인트 기준의 질문과 근거 자료가 함께 생성됩니다.
 
----
-
-### 4) 질문 탐색·학습
-
-<table>
-  <tr>
-    <td align="center">
-      <b>질문 항목 펼치기</b><br/>
-      <img src="frontend/ai-interview/public/demo/질문항목.gif" alt="질문 항목" width="480"/>
-    </td>
-    <td align="center">
-      <b>질문 삭제</b><br/>
-      <img src="frontend/ai-interview/public/demo/질문 삭제.gif" alt="질문 삭제" width="480"/>
-    </td>
-  </tr>
-</table>
-
-
-## 🔥 핵심 기능: 폼 기반 질문 생성 & 실무 이론 가이드
-
-사용자가 **역할/경력/스택/키워드**를 입력하면, **팀에서 실제로 검증하고 싶은 항목**을 기준으로  
-**실무 중심 면접 질문**과 **검증 포인트(이론/베스트 프랙티스)**를 함께 생성합니다.
-
-<p align="center">
-  <!-- 실제 GIF 경로로 교체하세요 -->
-  <img src="frontend/ai-interview/src/assets/gifs/question-generation.gif" alt="질문 생성 데모" width="900"/>
-</p>
-
-**입력 예시**
+  **입력 예시**
 - 역할: 프론트엔드 / 경력: 1년  
 - 기술: React, Next.js, Vite / 키워드: 성능 최적화, 상태관리 / 난이도: 중
 
@@ -158,6 +133,26 @@
   `frontend/ai-interview/src/pages/InterviewPrep/components/AIResponsePreview.jsx`
 - Backend: `backend/routes/questionRoutes.js`, `backend/controllers/questionController.js`,  
   `backend/utils/prompts.js`
+
+
+
+---
+
+### 5) 질문 탐색·학습
+
+<table>
+  <tr>
+    <td align="center">
+      <b>질문 생성하기 </b><br/>
+      <img src="frontend/ai-interview/public/demo/질문항목.gif" alt="질문 항목" width="480"/>
+    </td>
+    <td align="center">
+      <b>질문 삭제</b><br/>
+      <img src="frontend/ai-interview/public/demo/질문 삭제.gif" alt="질문 삭제" width="480"/>
+    </td>
+  </tr>
+</table>
+
 
 ---
 
