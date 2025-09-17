@@ -33,3 +33,4 @@ dist/
 
 
 /STUDY_LOG/
+git pull --rebase origin main
