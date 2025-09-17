@@ -7,12 +7,28 @@ import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const AIResponsePreview = ({ content }) => {
   if (!content) return null;
+  const toMarkdown = (v) => {
+    if (typeof v === "string") return v;
+    if (Array.isArray(v)) {
+      // 예: [{question, answer}] → Markdown으로 변환
+      return v
+        .map(
+          (x, i) =>
+            `### Q${i + 1}. ${x?.question ?? ""}\n${
+              x?.answer ? `- **A:** ${x.answer}` : ""
+            }`
+        )
+        .join("\n\n");
+    }
+    // 객체면 보기 좋게 코드블록으로
+    return "```\n" + JSON.stringify(v, null, 2) + "\n```";
+  };
 
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-[14px] prose prose-slate dark:prose-invert max-w-none">
         <ReactMarkdown
-          remarkPlugins={[ remarkGfm ]}
+          remarkPlugins={[remarkGfm]}
           components={{
             code({ node, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || "");
@@ -140,7 +156,7 @@ const AIResponsePreview = ({ content }) => {
             },
           }}
         >
-          {content}
+          {toMarkdown(content)}
         </ReactMarkdown>
       </div>
     </div>
@@ -186,13 +202,13 @@ function CodeBlock({ code, language }) {
           type="button"
         >
           {copied ? (
-              <LuCheck size={16} className="text-green-600" />
+            <LuCheck size={16} className="text-green-600" />
           ) : (
-              <LuCopy size={16} />
+            <LuCopy size={16} />
           )}
           {copied && (
             <span className="absolute -top-8 right-0 bg-black text-white text-xs rounded-md px-2 py-1 opacity-80 group-hover:opacity-100 transition ">
-                복사완료!
+              복사완료!
             </span>
           )}
         </button>

@@ -26,3 +26,5 @@ src/uploads/*
 !src/uploads/.gitkeep
 
 
+/STUDY_LOG/
+!/STUDY_LOG/.gitkeep
