@@ -6,7 +6,7 @@
 <h1 align="center">Velin AI — 인터뷰 프렙</h1>
 
 <p align="center">
-  <i>실무 팀원이 보는 관점으로, 바로 현업에 쓰이는 질문과 자료를 뽑아 주는 인터뷰 준비 도구</i>
+  <i>실무 팀원이 보는 관점으로, 바로 현업에 쓰이는 질문과 자료를 뽑아 주는 인터뷰 준비 </i>
 </p>
 
 <p align="center">
@@ -246,7 +246,7 @@ npm run dev
 **backend/.env**
 
 ```env (필수 설정정)
-PORT=사용하는 포트번호 입
+PORT=사용하는 포트번호 입력 예) 4000
 MONGO_URI=mongodb://localhost:27017/interview_prep       
 JWT_SECRET=replace_me          # 랜덤 JWT 토근 Key 생성 -> JWT key 생성사이트에서 알아서 만들어 줍니다
 JEMINIAI_API_KEY=sk-...        # JEMINI API 인증 key 값 입력 
