@@ -32,5 +32,4 @@ Thumbs.db
 dist/
 
 
-/STUDY_LOG/
-git pull --rebase origin main
+**/STUDY_LOG/
