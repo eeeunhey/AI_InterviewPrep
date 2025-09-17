@@ -56,7 +56,7 @@
 - ✅ **Backend** — Node.js(Express) · Multer · JWT · Dotenv · CORS  
 - ✅ **DB** — MongoDB(Mongoose)  
 - ✅ **Dev** — Nodemon · (선택) Docker · ESLint/Prettier
-- ✅ **AI** — `Gemini 2.5 Flash-Lite` (빠른 응답·저비용·JSON 친화 → 폼 기반 질문 생성에 최적)
+- ✅ **AI** — `Gemini 2.5 Flash` (빠른 응답·저비용·JSON 친화 → 폼 기반 질문 생성에 최적)
                 <br/>프롬프트/템플릿: `backend/utils/prompts.js`
 
 ---
