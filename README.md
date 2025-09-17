@@ -1,19 +1,12 @@
 <p align="center">
   <!-- 로고: 필요 시 heroImg.png로 교체 -->
-  <img src="frontend/ai-interview/public/demo/logo.png" alt="Velin AI logo" width="200" height="100" />
+  <img src="frontend/ai-interview/public/demo/logo.png" alt="Velin AI logo" width="400" height="450" />
 </p>
 
-<h1 align="center">Velin AI — 인터뷰 프렙</h1>
+<h3 align="center">Velin AI — InterviewPrep </h3>
 
 <p align="center">
-  <i>실무 팀원이 보는 관점으로, 바로 현업에 쓰이는 질문과 자료를 뽑아 주는 인터뷰 준비 </i>
-</p>
-
-<p align="center">
-  <a href="#-데모-gif"><b>데모 보기</b></a> ·
-  <a href="#-빠른-시작"><b>Quick Start</b></a> ·
-  <a href="#-핵심-기능-요약"><b>Features</b></a> ·
-  <a href="https://github.com/eeeunhey/AI_InterviewProject/issues"><b>Issues</b></a>
+  <i>현업 관점을 담아, 실무 이해에 유용한 질문과 자료를 제공하는 인터뷰 준비</i>
 </p>
 
 <p align="center">
@@ -32,10 +25,6 @@
   <img src="https://img.shields.io/badge/ESLint-Config-4B32C3?logo=eslint&logoColor=white" />
   <img src="https://img.shields.io/badge/Prettier-Format-F7B93E?logo=prettier&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-optional-2496ED?logo=docker&logoColor=white" />
-</p>
-
-<p align="center">
-  생성형 질문·연습·리포트까지 연결된 인터뷰 워크플로우
 </p>
 
 ---
@@ -58,26 +47,26 @@
 - 프론트의 `InterviewPrep.jsx`에서 아코디언 형태로 확인하고,  
   `AIResponsePreview.jsx`로 **근거/예시/요약**을 함께 보여줍니다.
 
-> 함께 일하고 싶은 동료임을 드러내되, 나다운 전문적 판단과 고유한 관점을 잃지 않는 답을 준비하는 것을 목표로 합니다.
+> 함께 일하고 싶은 동료임을 드러내되, 나만의 전문적 판단과 고유한 관점을 잃지 않는 답을 준비하는 것을 목표로 합니다.
 
----
 
 ## 🧱 기술 스택
-**Frontend**: React 18, Vite, TailwindCSS, React Router, Axios  
-**Backend**: Node.js(Express), Multer(업로드), JWT, Dotenv, CORS  
-**DB**: MongoDB(Mongoose)  
-**AI(옵션)**: JEMINIAPI · `backend/utils/prompts.js`  
-**Dev**: Nodemon, (선택) Docker
+- ✅ **Frontend** — React 18 · Vite · TailwindCSS · React Router · Axios  
+- ✅ **Backend** — Node.js(Express) · Multer · JWT · Dotenv · CORS  
+- ✅ **DB** — MongoDB(Mongoose)  
+- ✅ **Dev** — Nodemon · (선택) Docker · ESLint/Prettier
+- ✅ **AI** — `Gemini 2.5 Flash-Lite` (빠른 응답·저비용·JSON 친화 → 폼 기반 질문 생성에 최적)
+                <br/>프롬프트/템플릿: `backend/utils/prompts.js`
 
 ---
 
 > 실사용 흐름을 짧은 GIF로 모았습니다. (이미지는 클릭해 확대)
 
-### 1) 랜딩페이지 
 
+### 🏠 랜딩페이지 
 <table align="center">
   <tr>
-    <td align="center" >
+    <td align="center">
       <b>랜딩 페이지</b><br/>
       <img src="frontend/ai-interview/public/demo/랜딩페이지.gif" alt="랜딩 페이지" width="750"/>
     </td>
@@ -85,76 +74,86 @@
 </table>
 
 ---
-### 1) 로그인 / 회원가입
 
+### 🔐 회원가입 —  사용자가 기본 정보를 등록합니다.
+<table align="center">
+  <tr>
+    <td align="center">
+      <b>회원가입</b><br/>
+      <img src="frontend/ai-interview/public/demo/회원가입.gif" alt="회원가입" width="720"/>
+    </td>
+  </tr>
+</table>
+
+---
+
+### 🔑 로그인 — 저장된 세션과 개인 질문을 불러옵니다.
 <table align="center">
   <tr>
     <td align="center">
       <b>로그인</b><br/>
-      <img src="frontend/ai-interview/public/demo/로그인.gif" alt="로그인" width="480"/>
-    </td>
-    <td align="center" width="20%">
-      <b>회원가입</b><br/>
-      <img src="frontend/ai-interview/public/demo/회원가입.gif" alt="회원가입" width="480"/>
+      <img src="frontend/ai-interview/public/demo/로그인.gif" alt="로그인" width="720"/>
     </td>
   </tr>
 </table>
 
 ---
 
-### 3) 대시보드(세션 목록)
-
-<p align="center">
-  <img src="frontend/ai-interview/public/demo/질문리스트 페이지.gif" alt="세션/질문 리스트" width="900"/>
-</p>
-
----
-
-### 4) ✨ 폼 기반 질문 생성 + 실무 이론 가이드
-
-<p align="center">
-  <img src="frontend/ai-interview/public/demo/질문생성페이지.gif" alt="질문 생성 폼" width="900"/>
-</p>
-
-- 역할/경력/스택/키워드를 입력하면, 실무에서 실제로 확인하는 포인트 기준의 질문과 근거 자료가 함께 생성됩니다.
-
-  **입력 예시**
-- 역할: 프론트엔드 / 경력: 1년  
-- 기술: React, Next.js, Vite / 키워드: 성능 최적화, 상태관리 / 난이도: 중
-
-**생성 결과 예시**
-- Q: `useState vs useEffect`를 상황별로 어떻게 구분해 사용하나요?  
-  실무 포인트: 리렌더 트리거/사이드이펙트 격리, 메모리 릭 방지 체크
-- Q: 컴포넌트 데이터 흐름 설계 시 props/state 전략은?  
-  실무 포인트: 리프팅, 컨텍스트 경계, 캐싱층 분리
-
-**구성 파일**
-- Frontend: `frontend/ai-interview/src/pages/InterviewPrep/InterviewPrep.jsx`,  
-  `frontend/ai-interview/src/pages/InterviewPrep/components/AIResponsePreview.jsx`
-- Backend: `backend/routes/questionRoutes.js`, `backend/controllers/questionController.js`,  
-  `backend/utils/prompts.js`
-
-
-
----
-
-### 5) 질문 탐색·학습
-
-<table>
+### ✨📝 질문 생성 폼 — 역할·경력·스택을 입력하면 **실무 관점 질문**과 **참고 자료**가 생성됩니다.
+<table align="center">
   <tr>
     <td align="center">
-      <b>질문 생성하기 </b><br/>
-      <img src="frontend/ai-interview/public/demo/질문항목.gif" alt="질문 항목" width="480"/>
-    </td>
-    <td align="center">
-      <b>질문 삭제</b><br/>
-      <img src="frontend/ai-interview/public/demo/질문 삭제.gif" alt="질문 삭제" width="480"/>
+      <b>질문 생성 폼</b><br/>
+      <img src="frontend/ai-interview/public/demo/질문항목.gif" alt="질문 생성 폼" width="720"/>
     </td>
   </tr>
 </table>
 
 
+지원자 정보를 간단히 입력하면, 팀이 실제로 확인하는 포인트(협업/품질/운영/보안 등)를 기준으로 <br/>
+질문에 대한 간략한 답변과 답변에 대한 자세한 **근거 자료**를 자동 생성합니다.
+
+**입력 항목**
+- **희망 직무**: 준비 중인 역할  
+  _예: 프론트엔드, 백엔드, UI/UX_
+- **총 경력(교육·업무 기간)**: 숫자만 입력  
+  _예: 1, 2, 3_
+- **주요 준비 항목**: 쉼표(,)로 구분한 기술/키워드/주제  
+  _예: React, Next.js, 상태관리, 성능 최적화_
+- **비고 / 메모**: 이번 연습의 목표·전략·주의할 점  
+  _예: “SEO·렌더링 전략 강조, 코드 예시는 간단히”_
+
+
+  **구성 파일**
+  - Frontend: `frontend/ai-interview/src/pages/InterviewPrep/InterviewPrep.jsx`,  
+    `frontend/ai-interview/src/pages/InterviewPrep/components/AIResponsePreview.jsx`
+  - Backend: `backend/routes/questionRoutes.js`, `backend/controllers/questionController.js`,  
+    `backend/utils/prompts.js`
+
 ---
+
+### 📄✅ 생성 결과 확인 (개인 질문 페이지) — 생성된 질문과 참고 자료를 한 화면에서 확인합니다.
+<p align="center">
+  <img src="frontend/ai-interview/public/demo/개인질문페이지.gif" alt="개인 질문 페이지" width="720"/>
+</p>
+
+---
+
+
+### ✨📝 생성 결과 확인 (세부 자료) — 각 질문에서 **핵심 배경·실무 포인트·예시 코드**를 함께 확인할 수 있습니다.
+<p align="center">
+  <img src="frontend/ai-interview/public/demo/질문생성페이지.gif" alt="질문 생성 폼" width="720"/>
+</p>
+
+- 생성된 질문 카드의 **자세히 보기**를 열면 아래를 확인합니다.
+  - **질문의 근거**: 면접 의도, 검증 기준, 참고 근거
+  - **실무에서 유용한 정보**: 적용 시 주의점, 모범 사례, 체크리스트/레퍼런스
+  - **예시 코드 블록**: 바로 실험해볼 수 있는 간단한 코드 예시
+
+
+---
+
+
 
 ## ✨ 핵심 기능 (요약)
 - 🔐 **인증**: 회원가입/로그인 (JWT) — `backend/controllers/authController.js`, `routes/authRoutes.js`
@@ -311,7 +310,4 @@ VITE_API_BASE_URL=http://localhost:4000
 
 MIT © [dmsgp2627@naver.com](mailto:dmsgp2627@naver.com)
 
-```
 
-원하는 톤에 맞게 한두 문장 더 다듬어줄 수도 있어. GIF 실제 경로만 알려주면 그에 맞춰 `<img src="…">`도 정확히 바꿔줄게!
-```
