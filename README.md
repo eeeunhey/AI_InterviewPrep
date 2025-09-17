@@ -1,6 +1,6 @@
 <p align="center">
   <!-- 로고: 필요 시 heroImg.png로 교체 -->
-  <img src="frontend/ai-interview/public/demo/logo.png" alt="Velin AI logo" width="120" height="120" />
+  <img src="frontend/ai-interview/public/demo/logo.png" alt="Velin AI logo" width="200" height="200" />
 </p>
 
 <h1 align="center">Velin AI — 인터뷰 프렙</h1>
