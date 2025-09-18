@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/TailwindCSS-3+-06B6D4?logo=tailwindcss&logoColor=white" />
   <img src="https://img.shields.io/badge/React%20Router-6%2B-CA4245?logo=reactrouter&logoColor=white" />
   <img src="https://img.shields.io/badge/Axios-HTTP-5A29E4?logo=axios&logoColor=white" />
-  <img src="https://img.shields.io/badge/Markdown-Preview-000000?logo=markdown&logoColor=white" />
+  <img src="https://img.shields.io/badge/Markdown-Preview-000000?logo=markdown&logoColor=white" /><br />
   <img src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white" />
   <img src="https://img.shields.io/badge/JWT-Auth-000000?logo=jsonwebtokens&logoColor=white" />
