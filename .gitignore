@@ -33,3 +33,7 @@ Thumbs.db
 
 dist/
 -e ".env\n*.env\n.env.*\nvercel.env" 
+.env
+*.env
+.env.*
+vercel.env
