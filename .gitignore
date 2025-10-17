@@ -32,3 +32,4 @@ Thumbs.db
 .env.local
 
 dist/
+-e ".env\n*.env\n.env.*\nvercel.env" 
